@@ -1,8 +1,13 @@
 package pe.edu.pucp.iweb.lab8.dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import pe.edu.pucp.iweb.lab8.beans.Cancion;
+import pe.edu.pucp.iweb.lab8.beans.Genero;
 
 public class CancionDao extends BaseDao { // TODO: heredar de BaseDao
 
@@ -10,8 +15,23 @@ public class CancionDao extends BaseDao { // TODO: heredar de BaseDao
      * Ejercicio 2: todas las canciones (con el nombre de su género, JOIN),
      * ordenadas por título. Use PreparedStatement.
      */
+    String sql = "Select * from cancion"
     public ArrayList<Cancion> listar() {
         // TODO
+        ArrayList<Cancion> listaCancion = new ArrayList<>();
+        try (Connection conn = this.getConnection();
+             Statement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery("select * from genero");){
+            while(rs.next()){
+                Genero genero = new Genero();
+                genero.setIdGenero(rs.getInt(1));
+                genero.setNombre(rs.getString(2));
+                listaCancion.add(genero);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         return new ArrayList<>();
     }
 
