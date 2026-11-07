@@ -1,0 +1,4 @@
+pe\edu\pucp\iweb\lab8\dao\BaseDao.class
+pe\edu\pucp\iweb\lab8\dao\CancionDao.class
+pe\edu\pucp\iweb\lab8\beans\Genero.class
+pe\edu\pucp\iweb\lab8\beans\Cancion.class
